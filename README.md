@@ -30,4 +30,5 @@ Create a Python virtual env, like:
 python3 -m venv ddc
 pip3 install setuptools
 pip3 install -r requirements.txt
+python3 setup.py develop (install the cli in the virtual env)
 ```
