@@ -4,6 +4,8 @@ CHANGES
 0.0.7
 -----
 
+* update readme
+* remove deprecated python package workflow
 * reformatting
 
 0.0.6

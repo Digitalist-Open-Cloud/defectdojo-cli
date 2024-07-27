@@ -12,7 +12,7 @@ python3 -m pip install --upgrade build
 python3 -m build
 
 # Check files
-twine check dist/*
+twine check --strict dist/*
 
 # Publish on PyPI
 twine upload dist/*
