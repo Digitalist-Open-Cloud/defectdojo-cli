@@ -2,11 +2,11 @@ from datetime import datetime
 import json
 import sys
 import argparse
-import requests
 from rich_argparse import RichHelpFormatter
 from unittest.mock import PropertyMock
 from defectdojo_cli2.util import Util
 from defectdojo_cli2.tests import Tests
+from defectdojo_cli2.EnvDefaults import EnvDefaults
 
 class Engagements(object):
     def parse_cli_args(self):
@@ -17,6 +17,8 @@ class Engagements(object):
     You can use the following sub_commands:
         create     Create an engagement (engagements create --help for more details)
         close      Close an engagement (engagements close --help for more details)
+        list       List an engagements (engagements list --help for more details)
+        reopen     Re open an engagement (engagements reopen --help for more details)
         update     Update an engagement (engagements update --help for more details)
 ''', formatter_class=RichHelpFormatter)
         parser.add_argument('sub_command', help='Sub_command to run')
@@ -82,10 +84,20 @@ class Engagements(object):
                                          formatter_class=RichHelpFormatter)
         optional = parser._action_groups.pop()
         required = parser.add_argument_group('required arguments')
-        required.add_argument('--url',
-                              help='DefectDojo URL', required=True)
-        required.add_argument('--api_key',
-                              help='API v2 Key', required=True)
+        required.add_argument(
+            '--url',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_URL',
+            help='DefectDojo URL',
+            required=True
+        )
+        required.add_argument(
+            '--api_key',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_API_KEY',
+            help='API v2 Key',
+            required=True
+        )
         required.add_argument('--name',
                               help='Engagement name', required=True)
         required.add_argument('--desc',
@@ -171,8 +183,20 @@ class Engagements(object):
                                          formatter_class=RichHelpFormatter)
         required = parser.add_argument_group('required arguments')
         parser.add_argument('engagement_id', help='ID of the engagement to be closed')
-        required.add_argument('--url', help='DefectDojo URL', required=True)
-        required.add_argument('--api_key', help='API v2 Key', required=True)
+        required.add_argument(
+            '--url',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_URL',
+            help='DefectDojo URL',
+            required=True
+        )
+        required.add_argument(
+            '--api_key',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_API_KEY',
+            help='API v2 Key',
+            required=True
+        )
         # Parse out arguments ignoring the first three (because we're inside a sub_command)
         args = vars(parser.parse_args(sys.argv[3:]))
 
@@ -229,8 +253,20 @@ class Engagements(object):
         optional = parser._action_groups.pop()
         required = parser.add_argument_group('required arguments')
         parser.add_argument('engagement_id', help='ID of the engagement to be updated')
-        required.add_argument('--url', help='DefectDojo URL', required=True)
-        required.add_argument('--api_key', help='API v2 Key', required=True)
+        required.add_argument(
+            '--url',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_URL',
+            help='DefectDojo URL',
+            required=True
+        )
+        required.add_argument(
+            '--api_key',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_API_KEY',
+            help='API v2 Key',
+            required=True
+        )
         optional.add_argument('--name', help='Engagement name')
         optional.add_argument('--desc', help='Engagement description', metavar='DESCRIPTION')
         optional.add_argument('--product_id', help='ID of the product the engagement belongs to')
@@ -272,16 +308,21 @@ class Engagements(object):
     def _list(self):
         # Read user-supplied arguments
         parser = argparse.ArgumentParser(description='List an engagement on DefectDojo',
-                                         usage='defectdojo engagements list [<args>]')
+                                         usage='defectdojo engagements list [<args>]',
+                                         formatter_class=RichHelpFormatter)
         optional = parser._action_groups.pop()
         required = parser.add_argument_group('required arguments')
         required.add_argument(
             '--url',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_URL',
             help='DefectDojo URL',
             required=True
         )
         required.add_argument(
             '--api_key',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_API_KEY',
             help='API v2 Key',
             required=True
         )
@@ -316,11 +357,24 @@ class Engagements(object):
     def _reopen(self):
         # Read user-supplied arguments
         parser = argparse.ArgumentParser(description='Reopen an engagement on DefectDojo',
-                                         usage='defectdojo engagements reopen ENGAGEMENT_ID')
+                                         usage='defectdojo engagements reopen ENGAGEMENT_ID',
+                                         formatter_class=RichHelpFormatter)
         required = parser.add_argument_group('required arguments')
         parser.add_argument('engagement_id', help='ID of the engagement to be reopened')
-        required.add_argument('--url', help='DefectDojo URL', required=True)
-        required.add_argument('--api_key', help='API v2 Key', required=True)
+        required.add_argument(
+            '--url',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_URL',
+            help='DefectDojo URL',
+            required=True
+        )
+        required.add_argument(
+            '--api_key',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_API_KEY',
+            help='API v2 Key',
+            required=True
+        )
         # Parse out arguments ignoring the first three (because we're inside a sub_command)
         args = vars(parser.parse_args(sys.argv[3:]))
 

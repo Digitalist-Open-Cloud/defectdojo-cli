@@ -32,3 +32,12 @@ pip3 install setuptools
 pip3 install -r requirements.txt
 pip install . (install the cli in the virtual env)
 ```
+
+## CI variables
+
+To use Defectdojo CLI in a CI context, there is DEFECTDOJO prefixed environment variables you could set.
+
+```sh
+DEFECTDOJO_URL
+DEFECTDOJO_API_KEY
+```

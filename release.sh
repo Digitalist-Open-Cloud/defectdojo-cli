@@ -11,6 +11,9 @@ python3 -m pip install --upgrade build
 # Build
 python3 -m build
 
+# Check files
+twine check dist/*
+
 # Publish on PyPI
 twine upload dist/*
 

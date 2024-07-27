@@ -10,6 +10,7 @@ from rich_argparse import RichHelpFormatter
 from defectdojo_cli2.util import Util
 from defectdojo_cli2.engagements import Engagements
 from defectdojo_cli2.tests import Tests
+from defectdojo_cli2.EnvDefaults import EnvDefaults
 
 class Findings(object):
     def parse_cli_args(self):
@@ -101,8 +102,20 @@ class Findings(object):
             help='Type of scanner',
             required=True
         )
-        required.add_argument('--url', help='DefectDojo URL', required=True)
-        required.add_argument('--api_key', help='API v2 Key', required=True)
+        required.add_argument(
+            '--url',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_URL',
+            help='DefectDojo URL',
+            required=True
+        )
+        required.add_argument(
+            '--api_key',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_API_KEY',
+            help='API v2 Key',
+            required=True
+        )
         required.add_argument('--engagement_id', help='Engagement ID', required=True)
         required.add_argument('--lead_id', help='ID of the user conducting the operation', required=True)
         optional.add_argument('--test_type', help='Test type / title (default = scanner name)')
@@ -260,12 +273,16 @@ class Findings(object):
 
         required.add_argument(
             '--url',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_URL',
             help='DefectDojo URL',
             required=True
         )
 
         required.add_argument(
             '--api_key',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_API_KEY',
             help='API v2 Key',
             required=True
         )
@@ -451,8 +468,20 @@ class Findings(object):
                                          formatter_class=RichHelpFormatter)
         optional = parser._action_groups.pop()
         required = parser.add_argument_group('required arguments')
-        required.add_argument('--url', help='DefectDojo URL', required=True)
-        required.add_argument('--api_key', help='API v2 Key', required=True)
+        required.add_argument(
+            '--url',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_URL',
+            help='DefectDojo URL',
+            required=True
+        )
+        required.add_argument(
+            '--api_key',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_API_KEY',
+            help='API v2 Key',
+            required=True
+        )
         optional.add_argument('--id', help='Get finding with this id')
         optional.add_argument('--test_id', help='Filter by test')
         optional.add_argument('--product_id', help='Filter by product')
@@ -637,8 +666,20 @@ class Findings(object):
         optional = parser._action_groups.pop()
         required = parser.add_argument_group('required arguments')
         parser.add_argument('finding_id', help='ID of the finding to be updated')
-        required.add_argument('--url', help='DefectDojo URL', required=True)
-        required.add_argument('--api_key', help='API v2 Key', required=True)
+        required.add_argument(
+            '--url',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_URL',
+            help='DefectDojo URL',
+            required=True
+        )
+        required.add_argument(
+            '--api_key',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_API_KEY',
+            help='API v2 Key',
+            required=True
+        )
         optional.add_argument('--active', help='Set finding as active (true) or inactive (false)',
                               choices=['true', 'false'])
         optional.add_argument('--mitigated', help='Indicates if the finding is mitigated (true) or not (false)',
@@ -685,8 +726,20 @@ class Findings(object):
                                          formatter_class=RichHelpFormatter)
         required = parser.add_argument_group('required arguments')
         parser.add_argument('finding_id', help='ID of the finding to be closed')
-        required.add_argument('--url', help='DefectDojo URL', required=True)
-        required.add_argument('--api_key', help='API v2 Key', required=True)
+        required.add_argument(
+            '--url',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_URL',
+            help='DefectDojo URL',
+            required=True
+        )
+        required.add_argument(
+            '--api_key',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_API_KEY',
+            help='API v2 Key',
+            required=True
+        )
         # Parse out arguments ignoring the first three (because we're inside a sub_command)
         args = vars(parser.parse_args(sys.argv[3:]))
 

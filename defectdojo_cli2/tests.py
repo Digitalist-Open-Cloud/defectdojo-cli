@@ -7,6 +7,7 @@ from unittest.mock import PropertyMock
 from tabulate import tabulate
 from rich_argparse import RichHelpFormatter
 from defectdojo_cli2.util import Util
+from defectdojo_cli2.EnvDefaults import EnvDefaults
 
 class Tests(object):
     def parse_cli_args(self):
@@ -85,11 +86,17 @@ class Tests(object):
         required = parser.add_argument_group('required arguments')
         required.add_argument(
             '--url',
-            help='DefectDojo URL', required=True
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_URL',
+            help='DefectDojo URL',
+            required=True
         )
         required.add_argument(
             '--api_key',
-            help='API v2 Key', required=True
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_API_KEY',
+            help='API v2 Key',
+            required=True
         )
         optional.add_argument(
             '--id',
@@ -227,11 +234,19 @@ class Tests(object):
         )
 
         required.add_argument(
-            '--url', help='DefectDojo URL', required=True
+            '--url',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_URL',
+            help='DefectDojo URL',
+            required=True
         )
 
         required.add_argument(
-            '--api_key', help='API v2 Key', required=True
+            '--api_key',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_API_KEY',
+            help='API v2 Key',
+            required=True
         )
 
         optional.add_argument(
@@ -306,11 +321,19 @@ class Tests(object):
         )
 
         required.add_argument(
-            '--url', help='DefectDojo URL', required=True
+            '--url',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_URL',
+            help='DefectDojo URL',
+            required=True
         )
 
         required.add_argument(
-            '--api_key', help='API v2 Key', required=True
+            '--api_key',
+            action=EnvDefaults,
+            envvar='DEFECTDOJO_API_KEY',
+            help='API v2 Key',
+            required=True
         )
 
         optional.add_argument(
