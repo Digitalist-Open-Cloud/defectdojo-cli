@@ -4,3 +4,4 @@ defectdojo_cli2.egg-info/
 dist/
 .eggs/
 ddc
+.token
