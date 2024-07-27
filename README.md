@@ -19,7 +19,7 @@ python3 -m pip install defectdojo-cli2
 ## Usage
 
 ```sh
-$ defectdojo --help
+defectdojo --help
 ```
 
 ## Development
