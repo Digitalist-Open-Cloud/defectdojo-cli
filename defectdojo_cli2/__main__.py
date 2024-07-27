@@ -1,9 +1,9 @@
 import sys
 import argparse
-from defectdojo_cli import Findings
-from defectdojo_cli import Engagements
-from defectdojo_cli import Tests
-from defectdojo_cli import __version__
+from defectdojo_cli2 import Findings
+from defectdojo_cli2 import Engagements
+from defectdojo_cli2 import Tests
+from defectdojo_cli2 import __version__
 
 # Multilevel argparse based on https://chase-seibert.github.io/blog/2014/03/21/python-multilevel-argparse.html
 class DefectDojoCLI(object):

@@ -5,7 +5,7 @@ import argparse
 import requests
 from unittest.mock import PropertyMock
 from tabulate import tabulate
-from defectdojo_cli.util import Util
+from defectdojo_cli2.util import Util
 
 class Tests(object):
     def parse_cli_args(self):

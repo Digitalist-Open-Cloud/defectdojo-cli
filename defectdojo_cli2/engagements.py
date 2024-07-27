@@ -4,8 +4,8 @@ import sys
 import argparse
 import requests
 from unittest.mock import PropertyMock
-from defectdojo_cli.util import Util
-from defectdojo_cli.tests import Tests
+from defectdojo_cli2.util import Util
+from defectdojo_cli2.tests import Tests
 
 class Engagements(object):
     def parse_cli_args(self):

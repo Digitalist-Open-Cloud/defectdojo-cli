@@ -1,5 +1,6 @@
-defectdojo_cli/__pycache__/
+defectdojo_cli2/__pycache__/
 build/
-defectdojo_cli.egg-info/
+defectdojo_cli2.egg-info/
 dist/
 .eggs/
+ddc

@@ -4,4 +4,4 @@ from .engagements import Engagements
 from .tests import Tests
 import pkg_resources  # part of setuptools
 
-__version__ = pkg_resources.get_distribution("defectdojo_cli").version
+__version__ = pkg_resources.get_distribution("defectdojo_cli2").version

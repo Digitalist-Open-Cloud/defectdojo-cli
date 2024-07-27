@@ -6,9 +6,9 @@ import requests
 import re
 from unittest.mock import PropertyMock
 from tabulate import tabulate
-from defectdojo_cli.util import Util
-from defectdojo_cli.engagements import Engagements
-from defectdojo_cli.tests import Tests
+from defectdojo_cli2.util import Util
+from defectdojo_cli2.engagements import Engagements
+from defectdojo_cli2.tests import Tests
 
 class Findings(object):
     def parse_cli_args(self):
@@ -177,7 +177,7 @@ class Findings(object):
 
         # If --note flag was passed
         if args['note'] is not None:
-            # Get the findings that were imported 
+            # Get the findings that were imported
             tmp_args = dict()
             tmp_args['url'] = args['url']
             tmp_args['api_key'] = args['api_key']
