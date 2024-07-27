@@ -24,4 +24,4 @@ git tag -d $version
 git tag -a "$version" -m "Release $version"
 
 # Push to remote repo
-git push --follow-tags
+git push origin main --follow-tags
