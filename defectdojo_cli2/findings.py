@@ -19,7 +19,6 @@ class Findings(object):
 
     You can use the following sub_commands:
         import          Import findings (scan results)
-        upload          Same as import (deprecated, EOL december/2021)
         reimport        Re-import findings of a test
         list            List findings
         update          Update a finding
@@ -34,10 +33,6 @@ class Findings(object):
             exit(1)
         # Use dispatch pattern to invoke method with same name (that starts with _)
         getattr(self, '_'+args.sub_command)()
-
-    # Backwards compability
-    def _upload(self):
-        self._import()
 
     def import_(self, url, api_key, result_file, scanner, engagement_id, lead_id,
                active=None, verified=None, scan_date=None, min_severity=None,
