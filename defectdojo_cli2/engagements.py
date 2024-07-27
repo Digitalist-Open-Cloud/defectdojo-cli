@@ -3,6 +3,7 @@ import json
 import sys
 import argparse
 import requests
+from rich_argparse import RichHelpFormatter
 from unittest.mock import PropertyMock
 from defectdojo_cli2.util import Util
 from defectdojo_cli2.tests import Tests
@@ -17,7 +18,7 @@ class Engagements(object):
         create     Create an engagement (engagements create --help for more details)
         close      Close an engagement (engagements close --help for more details)
         update     Update an engagement (engagements update --help for more details)
-''')
+''', formatter_class=RichHelpFormatter)
         parser.add_argument('sub_command', help='Sub_command to run')
         # Get sub_command
         args = parser.parse_args(sys.argv[2:3])
@@ -77,7 +78,8 @@ class Engagements(object):
     def _create(self):
         # Read user-supplied arguments
         parser = argparse.ArgumentParser(description='Create an engagement on DefectDojo',
-                                         usage='defectdojo engagements create [<args>]')
+                                         usage='defectdojo engagements create [<args>]',
+                                         formatter_class=RichHelpFormatter)
         optional = parser._action_groups.pop()
         required = parser.add_argument_group('required arguments')
         required.add_argument('--url',
@@ -165,7 +167,8 @@ class Engagements(object):
     def _close(self):
         # Read user-supplied arguments
         parser = argparse.ArgumentParser(description='Close an engagement on DefectDojo',
-                                         usage='defectdojo engagements close ENGAGEMENT_ID')
+                                         usage='defectdojo engagements close ENGAGEMENT_ID',
+                                         formatter_class=RichHelpFormatter)
         required = parser.add_argument_group('required arguments')
         parser.add_argument('engagement_id', help='ID of the engagement to be closed')
         required.add_argument('--url', help='DefectDojo URL', required=True)
@@ -221,7 +224,8 @@ class Engagements(object):
     def _update(self):
         # Read user-supplied arguments
         parser = argparse.ArgumentParser(description='Update a engagement on DefectDojo',
-                                         usage='defectdojo engagements update ENGAGEMENT_ID [<args>]')
+                                         usage='defectdojo engagements update ENGAGEMENT_ID [<args>]',
+                                         formatter_class=RichHelpFormatter)
         optional = parser._action_groups.pop()
         required = parser.add_argument_group('required arguments')
         parser.add_argument('engagement_id', help='ID of the engagement to be updated')

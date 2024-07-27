@@ -6,6 +6,7 @@ import requests
 import re
 from unittest.mock import PropertyMock
 from tabulate import tabulate
+from rich_argparse import RichHelpFormatter
 from defectdojo_cli2.util import Util
 from defectdojo_cli2.engagements import Engagements
 from defectdojo_cli2.tests import Tests
@@ -23,7 +24,7 @@ class Findings(object):
         list            List findings
         update          Update a finding
         close           Close a finding
-''')
+''', formatter_class=RichHelpFormatter)
         parser.add_argument('sub_command', help='Sub_command to run')
         # Get sub_command
         args = parser.parse_args(sys.argv[2:3])
@@ -92,7 +93,8 @@ class Findings(object):
     def _import(self):
         # Read user-supplied arguments
         parser = argparse.ArgumentParser(description='Import findings (scan results) to DefectDojo',
-                                         usage='defectdojo findings import RESULT_FILE [<args>]')
+                                         usage='defectdojo findings import RESULT_FILE [<args>]',
+                                         formatter_class=RichHelpFormatter)
         optional = parser._action_groups.pop()
         required = parser.add_argument_group('required arguments')
         parser.add_argument(
@@ -245,7 +247,8 @@ class Findings(object):
     def _reimport(self):
         # Read user-supplied arguments
         parser = argparse.ArgumentParser(description='Re-import findings (scan results) to DefectDojo',
-                                         usage='defectdojo findings reimport RESULT_FILE [<args>]')
+                                         usage='defectdojo findings reimport RESULT_FILE [<args>]',
+                                         formatter_class=RichHelpFormatter)
         optional = parser._action_groups.pop()
         required = parser.add_argument_group('required arguments')
 
@@ -449,7 +452,8 @@ class Findings(object):
     def _list(self):
         # Read user-supplied arguments
         parser = argparse.ArgumentParser(description='List findings stored on DefectDojo',
-                                         usage='defectdojo findings list [<args>]')
+                                         usage='defectdojo findings list [<args>]',
+                                         formatter_class=RichHelpFormatter)
         optional = parser._action_groups.pop()
         required = parser.add_argument_group('required arguments')
         required.add_argument('--url', help='DefectDojo URL', required=True)
@@ -633,7 +637,8 @@ class Findings(object):
     def _update(self):
         # Read user-supplied arguments
         parser = argparse.ArgumentParser(description='Update a finding on DefectDojo',
-                                         usage='defectdojo finding update FINDING_ID [<args>]')
+                                         usage='defectdojo finding update FINDING_ID [<args>]',
+                                         formatter_class=RichHelpFormatter)
         optional = parser._action_groups.pop()
         required = parser.add_argument_group('required arguments')
         parser.add_argument('finding_id', help='ID of the finding to be updated')
@@ -681,7 +686,8 @@ class Findings(object):
     def _close(self):
         # Read user-supplied arguments
         parser = argparse.ArgumentParser(description='Close a finding on DefectDojo',
-                                         usage='defectdojo finding close FINDING_ID [<args>]')
+                                         usage='defectdojo finding close FINDING_ID [<args>]',
+                                         formatter_class=RichHelpFormatter)
         required = parser.add_argument_group('required arguments')
         parser.add_argument('finding_id', help='ID of the finding to be closed')
         required.add_argument('--url', help='DefectDojo URL', required=True)

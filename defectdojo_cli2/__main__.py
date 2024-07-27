@@ -1,5 +1,6 @@
 import sys
 import argparse
+from rich_argparse import RichHelpFormatter
 from defectdojo_cli2 import Findings
 from defectdojo_cli2 import Engagements
 from defectdojo_cli2 import Tests
@@ -16,7 +17,7 @@ class DefectDojoCLI(object):
             findings        Operations related to findings (findings --help for more details)
             engagements     Operations related to engagements (engagements --help for more details)
             tests           Operations related to tests (tests --help for more details)
-        ''')
+        ''', formatter_class=RichHelpFormatter)
         parser.add_argument('command', help='Command to run')
         parser.add_argument('-v', '--version', action='version', version='%(prog)s_cli v' + __version__)
         # Parse_args defaults to [1:] for args, but you need to

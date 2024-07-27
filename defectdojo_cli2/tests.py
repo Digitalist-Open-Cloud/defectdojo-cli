@@ -5,6 +5,7 @@ import argparse
 import requests
 from unittest.mock import PropertyMock
 from tabulate import tabulate
+from rich_argparse import RichHelpFormatter
 from defectdojo_cli2.util import Util
 
 class Tests(object):
@@ -17,7 +18,7 @@ class Tests(object):
         create          Create a test
         list            List tests
         update          Update a test
-''')
+''', formatter_class=RichHelpFormatter)
         parser.add_argument(
             'sub_command',
             help='Sub_command to run'
@@ -78,7 +79,8 @@ class Tests(object):
     def _list(self):
         # Read user-supplied arguments
         parser = argparse.ArgumentParser(description='List tests stored on DefectDojo',
-                                         usage='defectdojo tests list [<args>]')
+                                         usage='defectdojo tests list [<args>]',
+                                         formatter_class=RichHelpFormatter)
         optional = parser._action_groups.pop()
         required = parser.add_argument_group('required arguments')
         required.add_argument(
@@ -215,7 +217,8 @@ class Tests(object):
     def _update(self):
         # Read user-supplied arguments
         parser = argparse.ArgumentParser(description='Update a test on DefectDojo',
-                                         usage='defectdojo tests update TEST_ID [<args>]')
+                                         usage='defectdojo tests update TEST_ID [<args>]',
+                                         formatter_class=RichHelpFormatter)
         optional = parser._action_groups.pop()
         required = parser.add_argument_group('required arguments')
 
@@ -291,7 +294,8 @@ class Tests(object):
     def _create(self):
         # Read user-supplied arguments
         parser = argparse.ArgumentParser(description='Create a test on DefectDojo',
-                                         usage='defectdojo tests create [<args>]')
+                                         usage='defectdojo tests create [<args>]',
+                                         formatter_class=RichHelpFormatter)
         optional = parser._action_groups.pop()
         required = parser.add_argument_group('required arguments')
 
