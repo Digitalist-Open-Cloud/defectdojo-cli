@@ -24,18 +24,20 @@ defectdojo --help
 
 ## Development
 
-Create a Python virtual env, like:
-
 ```sh
-python3 -m venv ddc
-pip3 install poetry
-pip3 install -r requirements.txt
-pip install . (install the cli in the virtual env)
+poetry env use /usr/local/bin/python3 # = your full path to the Python executable.
+poetry install
+poetry run python3 defectdojo_cli2
+
 ```
 
-## CI variables
+## WIP: DefectDojo for CI
 
-To use Defectdojo CLI in a CI context, there is DEFECTDOJO prefixed environment variables you could set.
+The goal of this cli is not only to be used as a cli tool for accessing DefectDojo API, but also to be able to run automated jobs in a CI environment, like importing scans to DefectDojo.
+
+We will publish a docker container when all needed basics are in place, to run DefectDojo CLI for this.
+
+To use Defectdojo CLI in a CI context, there is DEFECTDOJO prefixed environment variables you could set. This, so you don't need to provide the arguments.
 
 ```sh
 DEFECTDOJO_URL

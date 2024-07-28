@@ -9,8 +9,10 @@ poetry install
 # Build
 poetry build
 
-# Add pblush token
+# Add pblush token (only needed once)
 poetry config pypi-token.pypi <your-token>
+
+poetry publish
 
 # Commit ChangeLog and retag (so the tag points to the ChangeLog commit)
 git add ChangeLog

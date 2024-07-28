@@ -697,7 +697,9 @@ class Findings(object):
                         findings_list_url = re.sub(
                             "test__engagement__product=\\d+&?", "", findings_list_url
                         )
-                        findings_list_url = re.sub("limit=\\d+&?", "", findings_list_url)
+                        findings_list_url = re.sub(
+                            "limit=\\d+&?", "", findings_list_url
+                        )
                         findings_list_url = re.sub("%0A", "", findings_list_url)
                         print(
                             "\n\nYou can also view this list on DefectDojo:\n"
