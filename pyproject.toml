@@ -2,7 +2,7 @@
 dependencies = ['requests', 'tabulate', 'rich-argparse']
 
 name = "defectdojo_cli2"
-version = "0.0.7"
+version = "0.1.1"
 authors = [
   { name="Mikke Schirén", email="mikke.schiren@digitalist.com" },
 ]
