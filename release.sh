@@ -1,21 +1,16 @@
 #!/bin/bash
 
-version=$1
-
-# Create git tag so PBR can get the version
-git tag -a "$version" -m "Release $version"
+# Update version in pyproject.toml
+# Needed until we have a real handler for releases.
 
 # Install/Update python3 build module
-python3 -m pip install --upgrade build
+poetry install
 
 # Build
-python3 -m build
+poetry build
 
-# Check files
-twine check --strict dist/*
-
-# Publish on PyPI
-twine upload dist/*
+# Add pblush token
+poetry config pypi-token.pypi <your-token>
 
 # Commit ChangeLog and retag (so the tag points to the ChangeLog commit)
 git add ChangeLog

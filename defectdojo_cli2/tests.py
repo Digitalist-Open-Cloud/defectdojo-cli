@@ -39,7 +39,7 @@ class Tests(object):
         test_type=None,
         tag=None,
         limit=None,
-        **kwargs
+        **kwargs,
     ):
         # Create parameters to be requested
         request_params = dict()
@@ -113,9 +113,19 @@ class Tests(object):
             required=True,
         )
         optional.add_argument("--id", help="Get tests with this id")
-        optional.add_argument("--test_type", help="Filter by test type")
+        optional.add_argument(
+            "--test_type",
+            action=EnvDefaults,
+            envvar="DEFECTDOJO_TEST_TYPE",
+            help="Filter by test type",
+        )
         optional.add_argument("--title", help="Filter by test title")
-        optional.add_argument("--engagement_id", help="Filter by engagement")
+        optional.add_argument(
+            "--engagement_id",
+            action=EnvDefaults,
+            envvar="DEFECTDOJO_ENGAGEMENT_ID",
+            help="Engagement ID",
+        )
         optional.add_argument(
             "--tag", help="Test tag (can be used multiple times)", action="append"
         )
@@ -201,7 +211,7 @@ class Tests(object):
         lead_id=None,
         test_type=None,
         environment=None,
-        **kwargs
+        **kwargs,
     ):
         # Prepare JSON data to be send
         request_json = dict()
@@ -318,12 +328,13 @@ class Tests(object):
         optional = parser._action_groups.pop()
         required = parser.add_argument_group("required arguments")
 
-        parser.add_argument(
+        required.add_argument(
             "--engagement_id",
-            help="ID of the engagement where the test will be created",
+            action=EnvDefaults,
+            envvar="DEFECTDOJO_ENGAGEMENT_ID",
+            help="Engagement ID",
             required=True,
         )
-
         required.add_argument(
             "--url",
             action=EnvDefaults,
@@ -337,6 +348,14 @@ class Tests(object):
             action=EnvDefaults,
             envvar="DEFECTDOJO_API_KEY",
             help="API v2 Key",
+            required=True,
+        )
+
+        required.add_argument(
+            "--test_type",
+            action=EnvDefaults,
+            envvar="DEFECTDOJO_TEST_TYPE",
+            help="Test type",
             required=True,
         )
 
@@ -363,8 +382,6 @@ class Tests(object):
         optional.add_argument("--build_id", help="Test build ID")
 
         optional.add_argument("--commit_hash", help="Test commit hash")
-
-        optional.add_argument("--test_type", help="Test type")
 
         optional.add_argument("--env", help="Test environment")
 
@@ -409,7 +426,7 @@ class Tests(object):
         test_type=None,
         env=None,
         tag=None,
-        **kwargs
+        **kwargs,
     ):
         # Prepare JSON data to be send
         request_json = dict()

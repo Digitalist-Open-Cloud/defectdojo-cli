@@ -59,7 +59,7 @@ class Findings(object):
         build_id=None,
         branch_tag=None,
         commit_hash=None,
-        **kwargs
+        **kwargs,
     ):
         # Prepare JSON data to be send
         request_json = dict()
@@ -133,12 +133,21 @@ class Findings(object):
             help="API v2 Key",
             required=True,
         )
-        required.add_argument("--engagement_id", help="Engagement ID", required=True)
+        required.add_argument(
+            "--engagement_id",
+            action=EnvDefaults,
+            envvar="DEFECTDOJO_ENGAGEMENT_ID",
+            help="Engagement ID",
+            required=True,
+        )
         required.add_argument(
             "--lead_id", help="ID of the user conducting the operation", required=True
         )
         optional.add_argument(
-            "--test_type", help="Test type / title (default = scanner name)"
+            "--test_type",
+            action=EnvDefaults,
+            envvar="DEFECTDOJO_TEST_TYPE",
+            help="Test type / title (default = scanner name)",
         )
         optional.add_argument("--env", help="Environment")
         optional.add_argument(
@@ -269,7 +278,7 @@ class Findings(object):
         build_id=None,
         branch_tag=None,
         commit_hash=None,
-        **kwargs
+        **kwargs,
     ):
         # Prepare JSON data to be send
         request_json = dict()
@@ -432,7 +441,7 @@ class Findings(object):
         limit=None,
         tag_test=None,
         tags_operator=None,
-        **kwargs
+        **kwargs,
     ):
         # Create parameters to be requested
         request_params = dict()
@@ -544,7 +553,12 @@ class Findings(object):
         optional.add_argument("--id", help="Get finding with this id")
         optional.add_argument("--test_id", help="Filter by test")
         optional.add_argument("--product_id", help="Filter by product")
-        optional.add_argument("--engagement_id", help="Filter by engagement")
+        optional.add_argument(
+            "--engagement_id",
+            action=EnvDefaults,
+            envvar="DEFECTDOJO_ENGAGEMENT_ID",
+            help="Engagement ID",
+        )
         optional.add_argument(
             "--test_type",
             help="Filter by test type (can be used multiple times)",

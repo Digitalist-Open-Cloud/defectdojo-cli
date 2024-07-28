@@ -1,28 +1,18 @@
-[project]
-dependencies = ['requests', 'tabulate', 'rich-argparse']
-
-name = "defectdojo_cli2"
-version = "0.0.7"
-authors = [
-  { name="Mikke Schirén", email="mikke.schiren@digitalist.com" },
-]
+[tool.poetry]
+name = "defectdojo-cli2"
+version = "0.1.1"
 description = "CLI Wrapper for DefectDojo using APIv2"
+authors = ["Mikke Schirén <mikke.schiren@digitalist.com>"]
+license = "MIT"
 readme = "README.md"
-requires-python = ">=3.12"
-classifiers = [
-    "Development Status :: 4 - Beta",
-    "Programming Language :: Python :: 3 :: Only",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-]
-license = {file = "LICENSE"}
-[project.urls]
-Homepage = "https://github.com/Digitalist-Open-Cloud/defectdojo-cli"
-Issues = "https://github.com/Digitalist-Open-Cloud/defectdojo-cli/issues"
-[project.scripts]
-defectdojo = "defectdojo_cli2.__main__:main"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+requests = "^2.32.3"
+tabulate = "^0.9.0"
+rich-argparse = "^1.5.2"
+
+
 [build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
-[tool.setuptools]
-packages = ["defectdojo_cli2"]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
