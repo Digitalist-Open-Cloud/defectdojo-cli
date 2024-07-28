@@ -1,15 +1,10 @@
 CHANGES
 =======
 
-0.1.1
------
-
-Fixed release.
-
 0.1.0
 -----
 
-Error release, do not use.
+* added poetry for releases etc.
 
 0.0.7
 -----

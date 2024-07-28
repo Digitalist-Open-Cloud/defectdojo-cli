@@ -3,6 +3,7 @@ import json
 import sys
 import argparse
 from rich_argparse import RichHelpFormatter
+import os
 from unittest.mock import PropertyMock
 from defectdojo_cli2.util import Util
 from defectdojo_cli2.tests import Tests
@@ -54,7 +55,7 @@ class Engagements(object):
         tracker=None,
         tag=None,
         local_dedup=None,
-        **kwargs
+        **kwargs,
     ):
         # Prepare JSON data to be send
         request_json = dict()
@@ -273,7 +274,7 @@ class Engagements(object):
         branch_tag=None,
         product_version=None,
         status=None,
-        **kwargs
+        **kwargs,
     ):
         # Prepare JSON data to be send
         request_json = dict()

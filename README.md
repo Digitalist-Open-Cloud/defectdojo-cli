@@ -28,7 +28,7 @@ Create a Python virtual env, like:
 
 ```sh
 python3 -m venv ddc
-pip3 install setuptools
+pip3 install poetry
 pip3 install -r requirements.txt
 pip install . (install the cli in the virtual env)
 ```
@@ -40,4 +40,7 @@ To use Defectdojo CLI in a CI context, there is DEFECTDOJO prefixed environment 
 ```sh
 DEFECTDOJO_URL
 DEFECTDOJO_API_KEY
+DEFECTDOJO_PRODUCT_ID
+DEFECTDOJO_ENGAGEMENT_ID
+DEFECTDOJO_TEST_TYPE
 ```
