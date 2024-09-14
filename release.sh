@@ -10,7 +10,7 @@ poetry install
 poetry build
 
 # Add pblush token (only needed once)
-poetry config pypi-token.pypi <your-token>
+#poetry config pypi-token.pypi <your-token>
 
 poetry publish
 

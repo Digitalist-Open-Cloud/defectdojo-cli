@@ -22,6 +22,9 @@ class Util(object):
             headers["Accept"] = "application/json"
             headers["Content-Type"] = "application/json"
 
+        # if files:
+        #    headers["Content-Type"] = "multipart/form-data"
+
         response = requests.request(
             method=http_method,
             url=url,

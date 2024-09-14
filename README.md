@@ -6,7 +6,7 @@ A CLI wrapper for [DefectDojo](https://github.com/DefectDojo/django-DefectDojo)
 
 ## Fork
 
-This has been forked from <https://github.com/adiffpirate/defectdojo-cli>.
+This started as a fork of <https://github.com/adiffpirate/defectdojo-cli>.
 
 ## Installation
 
@@ -48,4 +48,6 @@ DEFECTDOJO_ENGAGEMENT_ID
 DEFECTDOJO_TEST_TYPE
 DEFECTDOJO_USER_NAME
 DEFECTDOJO_PASSWORD
+DEFECTDOJO_PRODUCT
+DEFECTDOJO_LANGUAGES_FILE
 ```

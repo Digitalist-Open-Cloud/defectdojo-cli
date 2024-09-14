@@ -6,6 +6,7 @@ from defectdojo_cli2 import Engagements
 from defectdojo_cli2 import Tests
 from defectdojo_cli2 import Announcements
 from defectdojo_cli2 import ApiToken
+from defectdojo_cli2 import ImportLanguages
 from defectdojo_cli2 import __version__
 
 
@@ -22,6 +23,7 @@ class DefectDojoCLI(object):
             findings        Operations related to findings (findings --help for more details)
             engagements     Operations related to engagements (engagements --help for more details)
             tests           Operations related to tests (tests --help for more details)
+            import_languages Operations related to import languages (import_languages --help for more details)
         """,
             formatter_class=RichHelpFormatter,
         )
@@ -50,6 +52,9 @@ class DefectDojoCLI(object):
 
     def _api_token(self):
         ApiToken().parse_cli_args()
+
+    def _import_languages(self):
+        ImportLanguages().parse_cli_args()
 
     def _tests(self):
         Tests().parse_cli_args()
