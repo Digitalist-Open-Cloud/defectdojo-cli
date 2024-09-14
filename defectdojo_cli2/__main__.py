@@ -4,6 +4,7 @@ from rich_argparse import RichHelpFormatter
 from defectdojo_cli2 import Findings
 from defectdojo_cli2 import Engagements
 from defectdojo_cli2 import Tests
+from defectdojo_cli2 import Announcements
 from defectdojo_cli2 import __version__
 
 
@@ -15,6 +16,8 @@ class DefectDojoCLI(object):
             usage="""defectdojo <command> [<args>]
 
     You can use the following commands:
+            announcements   Operations related to Announcements (announcements --help for more details)
+            api-token-auth  Operations related to API token auth (api-token-auth --help for more details)
             findings        Operations related to findings (findings --help for more details)
             engagements     Operations related to engagements (engagements --help for more details)
             tests           Operations related to tests (tests --help for more details)
@@ -34,6 +37,9 @@ class DefectDojoCLI(object):
             exit(1)
         # Use dispatch pattern to invoke method with same name (that starts with _)
         getattr(self, "_" + args.command)()
+
+    def _announcements(self):
+        Announcements().parse_cli_args()
 
     def _findings(self):
         Findings().parse_cli_args()

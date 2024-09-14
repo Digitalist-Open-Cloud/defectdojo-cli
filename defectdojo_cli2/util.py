@@ -31,6 +31,18 @@ class Util(object):
             headers=headers,
             verify=verify,
         )
+        try:
+          response
+          response.raise_for_status()
+        except requests.exceptions.HTTPError as errh:
+            print("HTTP Error")
+            print(errh.args[0])
+        except requests.exceptions.ReadTimeout as errrt:
+            print("Time out")
+        except requests.exceptions.ConnectionError as conerr:
+            print("Connection error")
+        except requests.exceptions.RequestException as errex:
+            print("Exception request")
         return response
 
     # Pretty print JSON response exiting with a sucess if the response status code is the same as the 'sucess_status_code' argument

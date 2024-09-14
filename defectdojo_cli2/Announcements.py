@@ -50,7 +50,6 @@ class Announcements(object):
         if style is not None:
             request_json["style"] = style
         request_json = json.dumps(request_json)
-        # Make request
         response = Util().request_apiv2(
             "POST", ANNOUNCMENTS_URL, api_key, data=request_json
         )
@@ -91,9 +90,8 @@ class Announcements(object):
         )
         optional.add_argument(
             "--style",
-            help="Style (NULL, info, success, warning, danger)",
-            default="NULL",
-            choices=["NULL", "info", "success", "warning", "danger"],
+            help="Style (info, success, warning, danger)",
+            choices=["info", "success", "warning", "danger"],
         )
 
         parser._action_groups.append(optional)
@@ -124,7 +122,6 @@ class Announcements(object):
         style=None,
         **kwargs,
     ):
-        # Create parameters to be requested
         request_params = dict()
         API_URL = url + "/api/v2"
         ANNOUNCMENTS_URL = API_URL + "/announcements/"
@@ -137,7 +134,7 @@ class Announcements(object):
         if offset is not None:
             request_params["offset"] = offset
         if style is not None:
-            request_params["test__engagement"] = style
+            request_params["style"] = style
 
         else:
             # Make a request to API getting only one finding to retrieve the total amount of findings
@@ -207,8 +204,8 @@ class Announcements(object):
         optional.add_argument(
             "--style",
             help="Style of announcement",
-            default="NULL",
-            choices=["NULL", "info", "success", "warning", "danger"],
+            default="",
+            choices=["info", "success", "warning", "danger"],
         )
 
         parser._action_groups.append(optional)
@@ -292,5 +289,5 @@ class Announcements(object):
             print(json.dumps({"status": "success"}, indent=4))
             sys.exit()
         else:
-            print(json.dumps({"status": '"error: ' + response.status_code + '"'}, indent=4))
+            print(json.dumps({"status": "error"}, indent=4))
             sys.exit(1)

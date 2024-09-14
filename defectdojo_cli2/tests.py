@@ -2,9 +2,6 @@ from datetime import datetime
 import json
 import sys
 import argparse
-import requests
-from unittest.mock import PropertyMock
-from tabulate import tabulate
 from rich_argparse import RichHelpFormatter
 from defectdojo_cli2.util import Util
 from defectdojo_cli2.EnvDefaults import EnvDefaults

@@ -29,6 +29,7 @@ poetry env use /usr/local/bin/python3 # = your full path to the Python executabl
 poetry install
 poetry run python3 defectdojo_cli2
 
+
 ```
 
 ## WIP: DefectDojo for CI
