@@ -1,10 +1,16 @@
 # Change log
 
+## [0.1.11] - 2024-09-15
+
+### Changed
+
+- Updated dependencies
+
 ## [0.1.10] - 2024-09-15
 
 ### Fixed
 
-Fixed exit for import language and reimport scan.
+- Fixed exit for import language and reimport scan.
 
 ## [0.1.9] - 2024-09-15
 
