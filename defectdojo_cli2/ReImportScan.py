@@ -181,4 +181,4 @@ class ReImportScan(object):
 
         if response.status_code == 201:
             print("Test uploaded")
-            sys.exit(1)
+            sys.exit(0)
