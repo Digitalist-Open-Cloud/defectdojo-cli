@@ -92,4 +92,4 @@ class ImportLanguages(object):
 
         if response.status_code == 201:
             print("File uploaded")
-            sys.exit(1)
+            sys.exit(0)
