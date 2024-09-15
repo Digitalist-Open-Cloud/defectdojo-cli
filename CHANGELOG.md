@@ -1,5 +1,12 @@
 # Change log
 
+## [0.1.8] - 2024-09-15
+
+### Fixed
+
+- Removed some unused environment variables.
+- Removed unused variables
+
 ## [0.1.7] - 2024-09-15
 
 ### Added
