@@ -38,6 +38,7 @@ class ReImportScan(object):
         file,
         active=None,
         verified=None,
+        push_to_jira=None,
         **kwargs,
     ):
         API_URL = url + "/api/v2"
@@ -51,6 +52,7 @@ class ReImportScan(object):
                    'active': active,
                    'verified': verified,
                    'test_title': test_title,
+                   'push_to_jira': push_to_jira,
                    'auto_create_context': True,
         }
         response = Util().request_apiv2(
@@ -109,7 +111,6 @@ class ReImportScan(object):
             help="Test title",
             required=True,
         )
-
         required.add_argument(
             "--file",
             action=EnvDefaults,
@@ -119,15 +120,34 @@ class ReImportScan(object):
         )
         optional.add_argument(
             "--verified",
-            help="Set as verified",
+            help="Mark vulnerabilities found as verified",
+            action="store_true",
+            dest="verified",
+        )
+        optional.add_argument(
+            "--unverified",
+            help="Mark vulnerabilities found as unverified (default)",
+            action="store_false",
+            dest="verified",
+        )
+        optional.add_argument(
+            "--active",
+            help="Mark vulnerabilities found as active (default)",
             action="store_true",
             dest="active",
         )
         optional.add_argument(
-            "--active",
-            help="Set as active",
-            action="store_true",
+            "--inactive",
+            help="Mark vulnerabilities found as inactive",
+            action="store_false",
             dest="active",
+        )
+        optional.set_defaults(active=True, verified=False, push_to_jira=False)
+        optional.add_argument(
+            "--push_to_jira",
+            help="push to Jira",
+            action="store_true",
+            dest="push_to_jira",
         )
 
         parser._action_groups.append(optional)
@@ -137,5 +157,5 @@ class ReImportScan(object):
         response = self.upload(**args)
 
         if response.status_code == 201:
-            print("File uploaded")
+            print("Test uploaded")
             sys.exit(1)

@@ -33,14 +33,14 @@ class Util(object):
         try:
           response
           response.raise_for_status()
-        except requests.exceptions.HTTPError as errh:
+        except requests.exceptions.HTTPError as error:
             print("HTTP Error")
-            print(errh.args[0])
-        except requests.exceptions.ReadTimeout as errrt:
+            print(error.args[0])
+        except requests.exceptions.ReadTimeout:
             print("Time out")
-        except requests.exceptions.ConnectionError as conerr:
+        except requests.exceptions.ConnectionError:
             print("Connection error")
-        except requests.exceptions.RequestException as errex:
+        except requests.exceptions.RequestException:
             print("Exception request")
         return response
 
