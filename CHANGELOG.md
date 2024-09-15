@@ -1,5 +1,11 @@
 # Change log
 
+## [0.1.9] - 2024-09-15
+
+### Added
+
+- Possible to set commit hash and branch for `reimport_scan`.
+
 ## [0.1.8] - 2024-09-15
 
 ### Fixed

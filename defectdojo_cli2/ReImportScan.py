@@ -39,6 +39,8 @@ class ReImportScan(object):
         active=None,
         verified=None,
         push_to_jira=None,
+        branch_tag=None,
+        commit_hash=None,
         **kwargs,
     ):
         API_URL = url + "/api/v2"
@@ -52,9 +54,15 @@ class ReImportScan(object):
                    'active': active,
                    'verified': verified,
                    'test_title': test_title,
-                   'push_to_jira': push_to_jira,
                    'auto_create_context': True,
         }
+        if push_to_jira is not None:
+            payload["push_to_jira"] = push_to_jira
+        if branch_tag is not None:
+            payload["branch_tag"] = branch_tag
+        if commit_hash is not None:
+            payload["commit_hash"] = commit_hash
+
         response = Util().request_apiv2(
             "POST", API_TOKEN_URL, api_key, data=payload, files=files
         )
@@ -142,6 +150,21 @@ class ReImportScan(object):
             action="store_false",
             dest="active",
         )
+        optional.add_argument(
+            "--branch_tag",
+            action=EnvDefaults,
+            envvar="DEFECTDOJO_BRANCH_TAG",
+            help="Branch or tag",
+            required=False,
+        )
+        optional.add_argument(
+            "--commit_hash",
+            action=EnvDefaults,
+            envvar="DEFECTDOJO_COMMIT_HASH",
+            help="Git commit hash",
+            required=False,
+        )
+
         optional.set_defaults(active=True, verified=False, push_to_jira=False)
         optional.add_argument(
             "--push_to_jira",
