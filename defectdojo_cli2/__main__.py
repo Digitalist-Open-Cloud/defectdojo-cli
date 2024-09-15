@@ -7,6 +7,7 @@ from defectdojo_cli2 import Tests
 from defectdojo_cli2 import Announcements
 from defectdojo_cli2 import ApiToken
 from defectdojo_cli2 import ImportLanguages
+from defectdojo_cli2 import ReImportScan
 from defectdojo_cli2 import __version__
 
 
@@ -18,12 +19,13 @@ class DefectDojoCLI(object):
             usage="""defectdojo <command> [<args>]
 
     You can use the following commands:
-            announcements   Operations related to Announcements (announcements --help for more details)
-            api_token  Operations related to API token auth (api-token-auth --help for more details)
-            findings        Operations related to findings (findings --help for more details)
-            engagements     Operations related to engagements (engagements --help for more details)
-            tests           Operations related to tests (tests --help for more details)
-            import_languages Operations related to import languages (import_languages --help for more details)
+            announcements     Operations related to Announcements (announcements --help for more details)
+            api_token         Operations related to API token auth (api-token-auth --help for more details)
+            findings          Operations related to findings (findings --help for more details)
+            engagements       Operations related to engagements (engagements --help for more details)
+            tests             Operations related to tests (tests --help for more details)
+            import_languages  Operations related to import languages (import_languages --help for more details)
+            reimport_scan     Operations related to reimport scans (reimport_scan --help for more details)
         """,
             formatter_class=RichHelpFormatter,
         )
@@ -55,6 +57,9 @@ class DefectDojoCLI(object):
 
     def _import_languages(self):
         ImportLanguages().parse_cli_args()
+
+    def _reimport_scan(self):
+        ReImportScan().parse_cli_args()
 
     def _tests(self):
         Tests().parse_cli_args()
