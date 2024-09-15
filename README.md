@@ -4,10 +4,6 @@
 
 A CLI wrapper for [DefectDojo](https://github.com/DefectDojo/django-DefectDojo)
 
-## Fork
-
-This started as a fork of <https://github.com/adiffpirate/defectdojo-cli>.
-
 ## Installation
 
 Simply run:
@@ -51,3 +47,7 @@ DEFECTDOJO_PASSWORD
 DEFECTDOJO_PRODUCT
 DEFECTDOJO_LANGUAGES_FILE
 ```
+
+## Fork
+
+This started as a fork of <https://github.com/adiffpirate/defectdojo-cli>.

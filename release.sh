@@ -15,9 +15,8 @@ poetry build
 poetry publish
 
 # Commit ChangeLog and retag (so the tag points to the ChangeLog commit)
-git add ChangeLog
+git add CHANGELOG.md
 git commit -m "Release $version"
-git tag -d $version
 git tag -a "$version" -m "Release $version"
 
 # Push to remote repo
