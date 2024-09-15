@@ -1,5 +1,11 @@
 # Change log
 
+## [0.1.12] - 2024-09-15
+
+### Updated
+
+- Documentation with examples and url to docker registry.
+
 ## [0.1.11] - 2024-09-15
 
 ### Changed
