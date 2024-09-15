@@ -1,5 +1,12 @@
 # Change log
 
+## [0.1.7] - 2024-09-15
+
+### Added
+
+- Command to reimport scans. The scan doesn't need to exist, so it also works for importing scans.
+- Changed names of some environment variables, and added some more.
+
 ## [0.1.6] - 2024-09-14
 
 ### Added
