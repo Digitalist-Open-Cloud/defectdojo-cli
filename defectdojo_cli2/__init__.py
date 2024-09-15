@@ -4,6 +4,7 @@ from .engagements import Engagements
 from .tests import Tests
 from .Announcements import Announcements
 from .ApiToken import ApiToken
+from .ReImportScan import ReImportScan
 from .ImportLanguages import ImportLanguages
 import pkg_resources  # part of setuptools
 

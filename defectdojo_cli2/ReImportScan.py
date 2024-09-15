@@ -6,7 +6,7 @@ from rich_argparse import RichHelpFormatter
 from defectdojo_cli2.util import Util
 from defectdojo_cli2.EnvDefaults import EnvDefaults
 
-class ImportLanguages(object):
+class ReImportScan(object):
     def parse_cli_args(self):
         parser = argparse.ArgumentParser(
             description="Perform <sub_command> related to announcements on DefectDojo",
@@ -31,16 +31,28 @@ class ImportLanguages(object):
         self,
         url,
         api_key,
-        product_id,
+        product_name,
+        engagement_name,
+        scan_type,
+        test_title,
         file,
+        active=None,
+        verified=None,
         **kwargs,
     ):
         API_URL = url + "/api/v2"
-        API_TOKEN_URL = API_URL + "/import-languages/"
+        API_TOKEN_URL = API_URL + "/reimport-scan/"
         files = {
           'file': open(file, 'rb')
         }
-        payload = {'product': product_id}
+        payload = {'product_name': product_name,
+                   'engagement_name': engagement_name,
+                   'scan_type': scan_type,
+                   'active': active,
+                   'verified': verified,
+                   'test_title': test_title,
+                   'auto_create_context': True,
+        }
         response = Util().request_apiv2(
             "POST", API_TOKEN_URL, api_key, data=payload, files=files
         )
@@ -49,8 +61,8 @@ class ImportLanguages(object):
     def _upload(self):
         # Read user-supplied arguments
         parser = argparse.ArgumentParser(
-            description="Upload Languages",
-            usage="defectdojo import_languages upload [<args>]",
+            description="Reimport scan",
+            usage="defectdojo reimport_scan upload [<args>]",
             formatter_class=RichHelpFormatter,
         )
         optional = parser._action_groups.pop()
@@ -70,18 +82,52 @@ class ImportLanguages(object):
             required=True,
         )
         required.add_argument(
-            "--product_id",
+            "--product_name",
             action=EnvDefaults,
-            envvar="DEFECTDOJO_PRODUCT_ID",
-            help="Product id",
+            envvar="DEFECTDOJO_PRODUCT_NAME",
+            help="Product name",
             required=True,
         )
+        required.add_argument(
+            "--engagement_name",
+            action=EnvDefaults,
+            envvar="DEFECTDOJO_ENGAGEMENT_NAME",
+            help="Engagement name",
+            required=True,
+        )
+        required.add_argument(
+            "--scan_type",
+            action=EnvDefaults,
+            envvar="DEFECTDOJO_SCAN_TYPE",
+            help="Scan type",
+            required=True,
+        )
+        required.add_argument(
+            "--test_title",
+            action=EnvDefaults,
+            envvar="DEFECTDOJO_TEST_TITLE",
+            help="Test title",
+            required=True,
+        )
+
         required.add_argument(
             "--file",
             action=EnvDefaults,
             envvar="DEFECTDOJO_LANGUAGES_FILE",
             help="File with languages",
             required=True,
+        )
+        optional.add_argument(
+            "--verified",
+            help="Set as verified",
+            action="store_true",
+            dest="active",
+        )
+        optional.add_argument(
+            "--active",
+            help="Set as active",
+            action="store_true",
+            dest="active",
         )
 
         parser._action_groups.append(optional)
